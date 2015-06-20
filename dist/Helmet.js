@@ -203,8 +203,8 @@ var Helmet = (function (_React$Component) {
             var title = getTitleFromPropsList(propsList);
             var metaTags = getTagsFromPropsList(_HelmetConstantsJs.TAG_NAMES.META, [_HelmetConstantsJs.TAG_PROPERTIES.NAME, _HelmetConstantsJs.TAG_PROPERTIES.CHARSET, _HelmetConstantsJs.TAG_PROPERTIES.HTTPEQUIV], propsList);
             var linkTags = getTagsFromPropsList(_HelmetConstantsJs.TAG_NAMES.LINK, [_HelmetConstantsJs.TAG_PROPERTIES.REL, _HelmetConstantsJs.TAG_PROPERTIES.HREF], propsList);
-            console.log("title", title);
             if (_reactLibExecutionEnvironment2["default"].canUseDOM) {
+                console.log("title", title);
                 if (title) document.title = title;
                 updateTags(_HelmetConstantsJs.TAG_NAMES.LINK, linkTags);
                 updateTags(_HelmetConstantsJs.TAG_NAMES.META, metaTags);
