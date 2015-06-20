@@ -122,9 +122,9 @@ class Helmet extends React.Component {
         const title = getTitleFromPropsList(propsList);
         const metaTags = getTagsFromPropsList(TAG_NAMES.META, [TAG_PROPERTIES.NAME, TAG_PROPERTIES.CHARSET, TAG_PROPERTIES.HTTPEQUIV], propsList);
         const linkTags = getTagsFromPropsList(TAG_NAMES.LINK, [TAG_PROPERTIES.REL, TAG_PROPERTIES.HREF], propsList);
-
+        console.log('title', title)
         if (ExecutionEnvironment.canUseDOM) {
-            document.title = title || "";
+            if(title) document.title = title;
             updateTags(TAG_NAMES.LINK, linkTags);
             updateTags(TAG_NAMES.META, metaTags);
         } else {
