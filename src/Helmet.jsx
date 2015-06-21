@@ -124,7 +124,7 @@ class Helmet extends React.Component {
         const linkTags = getTagsFromPropsList(TAG_NAMES.LINK, [TAG_PROPERTIES.REL, TAG_PROPERTIES.HREF], propsList);
 
         if (ExecutionEnvironment.canUseDOM) {
-            document.title = title || "";
+            if(title) document.title = title;
             updateTags(TAG_NAMES.LINK, linkTags);
             updateTags(TAG_NAMES.META, metaTags);
         } else {
@@ -139,16 +139,16 @@ class Helmet extends React.Component {
     }
 
     static rewind() {
-        const title = serverTitle;
-        const meta = generateTagsAsString(TAG_NAMES.META, serverMetaTags);
-        const link = generateTagsAsString(TAG_NAMES.LINK, serverLinkTags);
-
+        // after side-effect dispose, handle change fires again - we need to preserve variables before calling dispose.
+        const _serverTitle = serverTitle;
+        const _meta = generateTagsAsString(TAG_NAMES.META, serverMetaTags);
+        const _link = generateTagsAsString(TAG_NAMES.LINK, serverLinkTags);
         this.dispose();
 
         return {
-            title,
-            meta,
-            link
+            title: _serverTitle,
+            meta: _meta,
+            link: _link
         };
     }
 
